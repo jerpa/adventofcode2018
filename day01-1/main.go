@@ -1,30 +1,15 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"log"
-	"os"
-	"strconv"
+	c "adventofcode2018/common"
 )
 
 func main() {
 	sum := 0
 
-	file, err := os.Open("./input")
-	if err != nil {
-		log.Fatal(err)
+	for _, v := range c.GetInts(c.ReadInputFile()) {
+		sum += v
 	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		val, err := strconv.Atoi(scanner.Text())
-		if err != nil {
-			panic(err.Error())
-		}
-		sum += val
-	}
-	fmt.Println(sum)
+	c.Print(sum)
 
 }

@@ -1,27 +1,15 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"log"
-	"os"
+	c "adventofcode2018/common"
 	"strings"
 )
 
 func main() {
-	two := 0
-	three := 0
-	file, err := os.Open("./input")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
+	two, three := 0, 0
 
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		s := scanner.Text()
-		s2 := false
-		s3 := false
+	for _, s := range c.ReadInputFile() {
+		s2, s3 := false, false
 		for _, v := range strings.Split(s, "") {
 			if strings.Count(s, v) == 3 {
 				s3 = true
@@ -38,5 +26,5 @@ func main() {
 			three++
 		}
 	}
-	fmt.Println(three * two)
+	c.Print(two, three, two*three)
 }
